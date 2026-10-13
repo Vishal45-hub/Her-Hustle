@@ -33,11 +33,29 @@ export default function Navbar() {
   }, []);
 
   const handleLogout = async () => {
-    // Frontend-only logout
-    setUserName(null);
-    setUserEmail(null);
-    setUserRole(null);
-    setLoggedOut(true);
+    try {
+      // Call backend logout route to clear JWT cookie
+      await fetch('http://localhost:5000/api/user/logout', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      // Frontend logout
+      setUserName(null);
+      setUserEmail(null);
+      setUserRole(null);
+      setLoggedOut(true);
+    } catch (err) {
+      console.error('Logout error:', err);
+      // Still update frontend state even if backend call fails
+      setUserName(null);
+      setUserEmail(null);
+      setUserRole(null);
+      setLoggedOut(true);
+    }
   };
 
   const handleClose = () => {

@@ -1,8 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import OrganizerNavbar from '../organizerNavbar/OrganizerNavbar';
-import { useNavigate } from 'react-router-dom'; // ✅ Add this
-
-
+import { useNavigate } from 'react-router-dom';
 import {
   FaBriefcase,
   FaPlusCircle,
@@ -16,11 +13,12 @@ import {
   FaBars,
 } from 'react-icons/fa';
 import axios from 'axios';
+import OrganizerNavbar from '../organizerNavbar/OrganizerNavbar';
 import OrganizerSidebar from '../organizer-sidebar/OrganizerSidebar';
 import ApplicantProfile from '../applicantProfile/ApplicantProfile';
 export default function OrganizerDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const navigate = useNavigate(); // ✅ Add this hook
+  const navigate = useNavigate();
 
   const [userName, setUserName] = useState('Organizer');
   const [jobs, setJobs] = useState([]);
